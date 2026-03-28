@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown Rich Korporatsiyasi | Contact</title>
+    <meta name="description" content="Crown Rich Korporatsiyasi bilan bog'lanish: manzil, aloqa va FAQ." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Crown Rich home"><img class="brand-logo" src="images/crich.png" alt="Crown Rich logo" /></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Menyuni ochish"><span></span><span></span><span></span></button>
+        <nav class="nav" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="news.html">News</a>
+          <a href="contact.html" class="active">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Dark mode yoqish/o'chirish"><i class="fa-solid fa-moon"></i></button>
+          <button class="btn btn-gold open-modal" data-modal-target="#quickRequestModal">Tezkor so'rov</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero reveal">
+        <div class="container">
+          <p class="eyebrow">Contact</p>
+          <h1>Crown Rich bilan bog'laning</h1>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container contact-layout">
+          <article class="panel">
+            <h2>Kontakt ma'lumotlari</h2>
+            <p><strong>Manzil:</strong> Andijon viloyati, Bunyodkor MFY , Qo'shariq daxasi , 37-uy , 27-xonadon </p>
+            <p><strong>Telefon:</strong> +998 90 256 52 26</p>
+            <p><strong>Email:</strong> info@crownrich.uz</p>
+            <p><strong>Ish vaqti:</strong> Dushanba - Shanba, 09:00 - 19:00</p>
+            <div class="socials">
+              <a href="https://t.me/crownrich_uz" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+              <a href="https://www.instagram.com/crownrich.uz" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              <a href="https://www.facebook.com/crownrich.uz" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+          </article>
+
+          <form class="form-grid" data-validate>
+            <h3>Bog'lanish formasi</h3>
+            <label>Ism <input type="text" name="name" required /></label>
+            <label>Email <input type="email" name="email" required /></label>
+            <label>Telefon <input type="tel" name="phone" required /></label>
+            <label>Xabar <textarea name="message" rows="4" required></textarea></label>
+            <button class="btn btn-gold" type="submit">Yuborish</button>
+            <p class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container">
+          <h2>Xarita</h2>
+          <div class="map-placeholder map-embed">
+            <iframe
+              title="Crown Rich ofis xaritasi"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://maps.google.com/maps?q=Andijon%20viloyati%20Pushkin%20bolalar%20bogi&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container">
+          <h2>FAQ</h2>
+          <div class="faq-list">
+            <details>
+              <summary>Konsultatsiya pullikmi?</summary>
+              <p>Dastlabki konsultatsiya bepul, keyingi bosqichlar xizmat turiga qarab baholanadi.</p>
+            </details>
+            <details>
+              <summary>Xizmat so'rovi uchun qanday ma'lumotlar kerak?</summary>
+              <p>Kompaniya rekvizitlari, xizmat turi va so'rovning qisqacha tavsifi yetarli.</p>
+            </details>
+            <details>
+              <summary>Javob qancha vaqtda beriladi?</summary>
+              <p>Odatda 1 ish kuni ichida aloqa bo'limi siz bilan bog'lanadi.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Crown Rich Korporatsiyasi. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </footer>
+
+    <button class="back-top" id="backTop" aria-label="Yuqoriga qaytish"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <div class="modal" id="quickRequestModal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Yopish">×</button>
+        <h3>Tezkor so'rov</h3>
+        <form data-validate>
+          <label>Ism <input type="text" name="name" required /></label>
+          <label>Telefon <input type="tel" name="phone" required /></label>
+          <label>Xabar <textarea name="message" rows="4" required></textarea></label>
+          <button type="submit" class="btn btn-gold">Yuborish</button>
+          <p class="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

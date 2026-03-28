@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown Rich Korporatsiyasi | News Detail</title>
+    <meta name="description" content="Crown Rich Korporatsiyasi yangiliklari tafsilotlari." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Crown Rich home"><img class="brand-logo" src="images/crich.png" alt="Crown Rich logo" /></a>
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Menyuni ochish"><span></span><span></span><span></span></button>
+        <nav class="nav" id="navMenu">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="news.html" class="active">News</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Dark mode yoqish/o'chirish"><i class="fa-solid fa-moon"></i></button>
+          <button class="btn btn-gold open-modal" data-modal-target="#quickRequestModal">Tezkor so'rov</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero reveal" data-news-detail>
+        <div class="container">
+          <p class="eyebrow">News Detail</p>
+          <h1 data-news-title>MMF Farm Group dori vositalarini qadoqlash liniyasini ishga tushirdi</h1>
+          <p class="news-date" data-news-date>19 Mar 2026</p>
+          <p class="form-message" data-news-detail-message aria-live="polite"></p>
+        </div>
+      </section>
+
+      <article class="section reveal">
+        <div class="container article-wrap" data-news-detail>
+          <img loading="lazy" class="lazy-img" src="images/news-1.svg" alt="Yangilik tasviri" data-news-image />
+          <p data-news-excerpt>
+            Crown Rich tarkibidagi MMF Farm Group korxonasi dori vositalarini tayyorlash va qadoqlash
+            bo'yicha yangi liniyani ishga tushirdi.
+          </p>
+          <p data-news-content>
+            Yangi liniya dori partiyalarini standartlashtirish, sifat nazoratini kuchaytirish va yetkazib
+            berish barqarorligini oshirishga xizmat qiladi. Kelgusi bosqichda qo'shimcha qadoqlash quvvatlari
+            ishga tushirilishi rejalashtirilgan.
+          </p>
+          <a class="btn btn-outline" href="news.html">Yangiliklarga qaytish</a>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Crown Rich Korporatsiyasi. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </footer>
+
+    <button class="back-top" id="backTop" aria-label="Yuqoriga qaytish"><i class="fa-solid fa-arrow-up"></i></button>
+
+    <div class="modal" id="quickRequestModal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Yopish">×</button>
+        <h3>Tezkor so'rov</h3>
+        <form data-validate>
+          <label>Ism <input type="text" name="name" required /></label>
+          <label>Telefon <input type="tel" name="phone" required /></label>
+          <label>Xabar <textarea name="message" rows="4" required></textarea></label>
+          <button type="submit" class="btn btn-gold">Yuborish</button>
+          <p class="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

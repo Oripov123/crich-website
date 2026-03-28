@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="logo-2 placeholder">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0A2647"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#g)"/>
+  <rect x="48" y="48" width="1184" height="624" rx="24" fill="none" stroke="#FFD700" stroke-width="4" opacity="0.7"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#FFD700" font-family="Inter, Arial, sans-serif" font-size="54" font-weight="700">CROWN RICH</text>
+  <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="32">logo-2</text>
+</svg>

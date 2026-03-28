@@ -1,0 +1,42 @@
+[
+  {
+    "id": "news-1",
+    "title": "MMF Farm Group dori vositalarini qadoqlash liniyasini ishga tushirdi",
+    "date": "2026-03-19",
+    "excerpt": "Yangi liniya dori partiyalarini tayyorlash va qadoqlash tezligini oshiradi.",
+    "content": "Crown Rich tarkibidagi MMF Farm Group korxonasi dori vositalarini tayyorlash va qadoqlash bo'yicha yangi liniyani ishga tushirdi. Jarayonlar sifat va xavfsizlik standartlari asosida avtomatlashtirilgan.",
+    "image": "images/news-1.svg"
+  },
+  {
+    "id": "news-5",
+    "title": "Crown Rich raqamli transformatsiya dasturini kengaytirdi",
+    "date": "2026-02-25",
+    "excerpt": "Ichki operatsion monitoring uchun yangi dashboardlar joriy qilindi.",
+    "content": "Raqamli transformatsiya doirasida bo'limlar kesimida KPI monitoring jarayonlari to'liq raqamlashtirildi.",
+    "image": "images/news-5.svg"
+  },
+  {
+    "id": "news-6",
+    "title": "Yil yakuni bo'yicha korporatsiya 34% o'sishni qayd etdi",
+    "date": "2026-02-18",
+    "excerpt": "Asosiy o'sish savdo va xizmat yo'nalishlaridagi investitsiyalar hisobiga erishildi.",
+    "content": "Korporatsiya hisobotiga ko'ra, asosiy o'sish drayverlari sifatida xizmatlar diversifikatsiyasi va yangi bozorlar ko'rsatildi.",
+    "image": "images/news-6.svg"
+  },
+  {
+    "id": "6bceb53f-168a-4404-8f01-75da6d386df7",
+    "title": "test Post",
+    "date": "2026-03-19",
+    "excerpt": "Test uchun",
+    "content": "test uchun qoyilmoqda lorem 159",
+    "image": "images/logo"
+  },
+  {
+    "id": "b6e1bb50-2003-4743-b6b6-bd418fc4f63a",
+    "title": "sarlavgvhbj",
+    "date": "2002-01-02",
+    "excerpt": "qisqqa cvhjbknlbvjgc",
+    "content": "ztrxcgvkhbj;nlvcixuztyxuihvkb;jcouxztxicv;jkhoxydfov;jcuxdfogpbvicuxyr8dfpgvhcuotdfpgubvcotfpguo[ibvipcfpgh[ibvcofgphiobvocudfpoihvcutidfoi",
+    "image": "images/news-1.svg"
+  }
+]

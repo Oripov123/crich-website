@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown Rich Korporatsiyasi | Home</title>
+    <meta
+      name="description"
+      content="Rich brendi biologik faol qo'shimchalari: Crown Rich ishlab chiqarish va yetkazib berish, MMF Farm Group tayyorlash va qadoqlash jarayonlari."
+    />
+    <meta name="keywords" content="Crown Rich, MMF Farm Group, dori vositalari, ishlab chiqarish, qadoqlash" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <div class="site-loader" id="siteLoader" aria-hidden="true">
+      <div class="skeleton-wave"></div>
+    </div>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Crown Rich home">
+          <img class="brand-logo" src="images/crich.png" alt="Crown Rich logo" />
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="Menyuni ochish">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="navMenu">
+          <a href="index.html" class="active">Home</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Services</a>
+          <a href="news.html">News</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="header-actions">
+          <button class="icon-btn" id="themeToggle" aria-label="Dark mode yoqish/o'chirish">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <button class="btn btn-gold open-modal" data-modal-target="#quickRequestModal">Tezkor so'rov</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero reveal">
+        <div class="container hero-grid">
+          <div>
+            <p class="eyebrow">Crown Rich Korporatsiyasi</p>
+            <h1>Ko'p tarmoqli biznesni bitta kuchli standartda boshqaramiz.</h1>
+            <p>
+              Crown Rich dori vositalarini ishlab chiqarish va yetkazib berishni yagona strategik
+              boshqaruv modeli asosida rivojlantiradi.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-gold" href="services.html#products">Mahsulotlarni ko'rish</a>
+              <a class="btn btn-outline" href="contact.html">Bog'lanish</a>
+            </div>
+          </div>
+          <div class="media-skeleton loading">
+            <img loading="lazy" class="lazy-img" src="images/hero.svg" alt="Crown Rich korporativ preview" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Company Overview -->
+      <section class="section reveal" id="overview">
+        <div class="container">
+          <div class="section-title">
+            <p class="eyebrow">Tezkor overview</p>
+            <h2>Korporatsiya haqida qisqacha</h2>
+          </div>
+          <p class="lead">
+            Crown Rich dori vositalari ishlab chiqarish va yetkazib berish zanjirini boshqaruvchi
+            kompaniya hisoblanadi. Har bir bosqichda sifat, xavfsizlik va barqarorlik asosiy tamoyilimizdir.
+          </p>
+        </div>
+      </section>
+
+      <!-- Directions Cards -->
+      <section class="section reveal">
+        <div class="container">
+          <div class="section-title">
+            <p class="eyebrow">Asosiy yo'nalishlar</p>
+            <h2>Asosiy strategik faoliyat bloki</h2>
+          </div>
+          <div class="grid cards-4">
+            <article class="card">
+              <i class="fa-solid fa-globe"></i>
+              <h3>MMF Farm Group</h3>
+              <p>Dori vositalarini tayyorlash va qadoqlash bo'yicha ixtisoslashgan korxona.</p>
+              <a href="services.html#products" class="card-link">Mahsulotlar</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="section reveal stats">
+        <div class="container grid stats-grid">
+          <div><strong>12+</strong><span>Yillik tajriba</span></div>
+          <div><strong>25k+</strong><span>Yetkazilgan dori partiyalari</span></div>
+          <div><strong>340+</strong><span>Sifat nazoratidan o'tgan seriyalar</span></div>
+          <div><strong>90+</strong><span>Faol taqsimot nuqtalari</span></div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section reveal cta-strip">
+        <div class="container cta-inner">
+          <h2>Loyihangizni Crown Rich bilan keyingi bosqichga olib chiqing.</h2>
+          <a class="btn btn-gold" href="contact.html">Bog'lanish</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Crown Rich Korporatsiyasi. Barcha huquqlar himoyalangan.</p>
+        <div class="socials">
+          <a href="https://t.me/crownrich_uz" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+          <a href="https://www.instagram.com/crownrich.uz" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/crown-rich" target="_blank" rel="noopener noreferrer" aria-label="Linkedin"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <button class="back-top" id="backTop" aria-label="Yuqoriga qaytish">
+      <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <section class="cookie-banner" id="cookieBanner">
+      <p>Biz sayt tajribasini yaxshilash uchun cookie fayllardan foydalanamiz.</p>
+      <button class="btn btn-gold" id="acceptCookies">Qabul qilaman</button>
+    </section>
+
+    <section class="chatbot" id="chatbot">
+      <button class="chatbot-toggle" id="chatbotToggle" aria-label="Chat oynasi">
+        <i class="fa-solid fa-comments"></i>
+      </button>
+      <div class="chatbot-box" id="chatbotBox">
+        <h3>AI Assistant (Placeholder)</h3>
+        <p>Kelajakda bu yerda mijozlar uchun onlayn yordamchi ishlaydi.</p>
+      </div>
+    </section>
+
+    <div class="modal" id="quickRequestModal" aria-hidden="true">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Yopish">×</button>
+        <h3>Tezkor so'rov</h3>
+        <form data-validate>
+          <label>Ism <input type="text" name="name" required /></label>
+          <label>Telefon <input type="tel" name="phone" required /></label>
+          <label>Xabar <textarea name="message" rows="4" required></textarea></label>
+          <button type="submit" class="btn btn-gold">Yuborish</button>
+          <p class="form-message" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

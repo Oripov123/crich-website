@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown Rich | Admin Panel</title>
+    <meta name="description" content="Crown Rich yangiliklar boshqaruv admin paneli" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Crown Rich home"><img class="brand-logo" src="images/crich.png" alt="Crown Rich logo" /></a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="news.html">News</a>
+          <a href="admin.html" class="active">Admin</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero reveal">
+        <div class="container">
+          <p class="eyebrow">Admin Panel</p>
+          <h1>Yangiliklarni boshqarish</h1>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container admin-wrap">
+          <article class="panel">
+            <h2>Admin kalit</h2>
+            <p>Yangiliklarni tahrirlash uchun serverdagi `ADMIN_PANEL_KEY` qiymatini kiriting.</p>
+            <form class="admin-key-form" id="adminKeyForm">
+              <label>
+                Admin key
+                <input type="password" id="adminKeyInput" placeholder="Admin kalitni kiriting" required />
+              </label>
+              <button type="submit" class="btn btn-gold">Saqlash</button>
+              <button type="button" id="clearAdminKey" class="btn btn-outline">Tozalash</button>
+            </form>
+            <p class="form-message" id="adminKeyMessage" aria-live="polite"></p>
+          </article>
+
+          <article class="panel">
+            <h2>Yangilik qo'shish / tahrirlash</h2>
+            <form class="form-grid" id="newsForm">
+              <input type="hidden" id="newsId" />
+              <label>Sarlavha <input type="text" id="newsTitle" required /></label>
+              <label>Sana <input type="date" id="newsDate" required /></label>
+              <label>Qisqa matn <textarea id="newsExcerpt" rows="2" required></textarea></label>
+              <label>To'liq matn <textarea id="newsContent" rows="5" required></textarea></label>
+              <label>Rasm yo'li <input type="text" id="newsImage" placeholder="images/news-1.svg" /></label>
+              <div class="admin-actions">
+                <button type="submit" class="btn btn-gold" id="saveNewsBtn">Saqlash</button>
+                <button type="button" class="btn btn-outline" id="resetNewsBtn">Tozalash</button>
+              </div>
+              <p class="form-message" id="newsFormMessage" aria-live="polite"></p>
+            </form>
+          </article>
+
+          <article class="panel">
+            <div class="admin-list-head">
+              <h2>Mavjud yangiliklar</h2>
+              <button class="btn btn-outline" id="refreshNewsBtn">Yangilash</button>
+            </div>
+            <div id="adminNewsList" class="admin-list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Crown Rich Korporatsiyasi. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
