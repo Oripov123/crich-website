@@ -6,6 +6,14 @@
   .logos-5 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .crm-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .crm-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 900px) {
@@ -60,6 +68,15 @@
 
   .cards-4,
   .logos-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-board,
+  .crm-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .crm-row {
     grid-template-columns: 1fr;
   }
 

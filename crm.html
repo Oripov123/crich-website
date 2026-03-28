@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crown Rich | CRM</title>
+    <meta name="description" content="Crown Rich CRM: mijozlar, leadlar va vazifalarni boshqarish paneli." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Crown Rich home"><img class="brand-logo" src="images/crich.png" alt="Crown Rich logo" /></a>
+        <nav class="nav">
+          <a href="index.html">Home</a>
+          <a href="news.html">News</a>
+          <a href="admin.html">Admin</a>
+          <a href="crm.html" class="active">CRM</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="page-hero reveal">
+        <div class="container">
+          <p class="eyebrow">Crown Rich CRM</p>
+          <h1>Mijozlar, leadlar va vazifalarni boshqarish</h1>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="container admin-wrap">
+          <article class="panel">
+            <h2>Admin kalit</h2>
+            <form class="admin-key-form" id="crmKeyForm">
+              <label>
+                Admin key
+                <input type="password" id="crmKeyInput" placeholder="ADMIN_PANEL_KEY ni kiriting" required />
+              </label>
+              <button type="submit" class="btn btn-gold">Saqlash</button>
+              <button type="button" id="crmClearKey" class="btn btn-outline">Tozalash</button>
+              <button type="button" id="crmReloadAll" class="btn btn-outline">Yangilash</button>
+            </form>
+            <p class="form-message" id="crmGlobalMessage" aria-live="polite"></p>
+          </article>
+
+          <div class="grid cards-3 crm-stats" id="crmStats"></div>
+
+          <article class="panel">
+            <h2>Mijoz qo'shish / tahrirlash</h2>
+            <form class="form-grid" id="clientForm">
+              <input type="hidden" id="clientId" />
+              <label>Ism/FIO <input type="text" id="clientName" required /></label>
+              <label>Kompaniya <input type="text" id="clientCompany" /></label>
+              <label>Telefon <input type="tel" id="clientPhone" required /></label>
+              <label>Email <input type="email" id="clientEmail" /></label>
+              <label>Status
+                <select id="clientStatus">
+                  <option value="new">Yangi</option>
+                  <option value="active">Faol</option>
+                  <option value="vip">VIP</option>
+                </select>
+              </label>
+              <label>Manba <input type="text" id="clientSource" placeholder="Instagram, Telegram, Referal..." /></label>
+              <label>Izoh <textarea id="clientNote" rows="3"></textarea></label>
+              <div class="admin-actions">
+                <button type="submit" class="btn btn-gold">Saqlash</button>
+                <button type="button" class="btn btn-outline" id="clientReset">Tozalash</button>
+              </div>
+              <p class="form-message" id="clientMessage" aria-live="polite"></p>
+            </form>
+          </article>
+
+          <article class="panel">
+            <h2>Lead qo'shish / tahrirlash</h2>
+            <form class="form-grid" id="leadForm">
+              <input type="hidden" id="leadId" />
+              <label>Lead nomi <input type="text" id="leadTitle" required /></label>
+              <label>Mijoz nomi <input type="text" id="leadClientName" /></label>
+              <label>Telefon <input type="tel" id="leadPhone" /></label>
+              <label>Bitim summasi (UZS) <input type="number" id="leadValue" min="0" step="1000" /></label>
+              <label>Bosqich
+                <select id="leadStage">
+                  <option value="new">Yangi</option>
+                  <option value="contacted">Bog'lanilgan</option>
+                  <option value="proposal">Taklif yuborilgan</option>
+                  <option value="won">Yopilgan (Won)</option>
+                  <option value="lost">Yo'qotilgan (Lost)</option>
+                </select>
+              </label>
+              <label>Mas'ul <input type="text" id="leadOwner" /></label>
+              <label>Keyingi aloqa sanasi <input type="date" id="leadNextActionDate" /></label>
+              <label>Izoh <textarea id="leadNote" rows="3"></textarea></label>
+              <div class="admin-actions">
+                <button type="submit" class="btn btn-gold">Saqlash</button>
+                <button type="button" class="btn btn-outline" id="leadReset">Tozalash</button>
+              </div>
+              <p class="form-message" id="leadMessage" aria-live="polite"></p>
+            </form>
+          </article>
+
+          <article class="panel">
+            <h2>Vazifa qo'shish / tahrirlash</h2>
+            <form class="form-grid" id="taskForm">
+              <input type="hidden" id="taskId" />
+              <label>Vazifa nomi <input type="text" id="taskTitle" required /></label>
+              <label>Mas'ul <input type="text" id="taskAssignee" /></label>
+              <label>Muddati <input type="date" id="taskDueDate" /></label>
+              <label>Prioritet
+                <select id="taskPriority">
+                  <option value="low">Past</option>
+                  <option value="normal">O'rta</option>
+                  <option value="high">Yuqori</option>
+                </select>
+              </label>
+              <label>Status
+                <select id="taskStatus">
+                  <option value="todo">Rejada</option>
+                  <option value="doing">Jarayonda</option>
+                  <option value="done">Bajarilgan</option>
+                </select>
+              </label>
+              <label>Bog'liq turi
+                <select id="taskRelatedType">
+                  <option value="">Tanlanmagan</option>
+                  <option value="client">Mijoz</option>
+                  <option value="lead">Lead</option>
+                </select>
+              </label>
+              <label>Bog'liq ID <input type="text" id="taskRelatedId" placeholder="Client/Lead ID" /></label>
+              <label>Izoh <textarea id="taskNote" rows="3"></textarea></label>
+              <div class="admin-actions">
+                <button type="submit" class="btn btn-gold">Saqlash</button>
+                <button type="button" class="btn btn-outline" id="taskReset">Tozalash</button>
+              </div>
+              <p class="form-message" id="taskMessage" aria-live="polite"></p>
+            </form>
+          </article>
+
+          <article class="panel">
+            <div class="admin-list-head">
+              <h2>Mijozlar ro'yxati</h2>
+            </div>
+            <div id="clientsList" class="admin-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="admin-list-head">
+              <h2>Lead pipeline</h2>
+            </div>
+            <div id="leadsBoard" class="crm-board"></div>
+          </article>
+
+          <article class="panel">
+            <div class="admin-list-head">
+              <h2>Vazifalar</h2>
+            </div>
+            <div id="tasksList" class="admin-list"></div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>© <span id="year"></span> Crown Rich Korporatsiyasi. Barcha huquqlar himoyalangan.</p>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="crm.js"></script>
+  </body>
+</html>

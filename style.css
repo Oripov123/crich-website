@@ -786,6 +786,78 @@ select:focus {
   gap: 0.5rem;
 }
 
+.crm-stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.crm-stats .card {
+  text-align: center;
+}
+
+.crm-stats .card h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1.8rem;
+}
+
+.crm-row {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--light);
+  padding: 0.9rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.crm-row p {
+  margin: 0.2rem 0;
+}
+
+.crm-tag {
+  display: inline-block;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.crm-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.crm-column {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.7rem;
+  background: var(--light);
+  min-height: 130px;
+}
+
+.crm-column h3 {
+  margin-bottom: 0.5rem;
+}
+
+.crm-mini-card {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--white);
+  padding: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.crm-mini-card h4 {
+  margin: 0 0 0.35rem;
+}
+
+.crm-mini-card p {
+  margin: 0.2rem 0;
+  font-size: 0.9rem;
+}
+
 .site-footer {
   margin-top: 2rem;
   border-top: 1px solid var(--line);

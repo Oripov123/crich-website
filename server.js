@@ -13,7 +13,14 @@ const adminKey = process.env.ADMIN_PANEL_KEY || 'change-me';
 const dataDir = path.join(__dirname, 'data');
 const newsFilePath = path.join(dataDir, 'news.json');
 const messageLogsFilePath = path.join(dataDir, 'message-logs.json');
+const crmFilePath = path.join(dataDir, 'crm.json');
 const maxMessageLogs = 1000;
+
+const defaultCrm = {
+  clients: [],
+  leads: [],
+  tasks: []
+};
 
 const defaultNews = [
   {
@@ -92,6 +99,35 @@ async function writeNews(newsItems) {
   await fs.writeFile(newsFilePath, JSON.stringify(newsItems, null, 2), 'utf8');
 }
 
+async function ensureCrmStorage() {
+  await fs.mkdir(dataDir, { recursive: true });
+  try {
+    await fs.access(crmFilePath);
+  } catch (_error) {
+    await fs.writeFile(crmFilePath, JSON.stringify(defaultCrm, null, 2), 'utf8');
+  }
+}
+
+function normalizeCrmState(value) {
+  const source = value && typeof value === 'object' ? value : {};
+  return {
+    clients: Array.isArray(source.clients) ? source.clients : [],
+    leads: Array.isArray(source.leads) ? source.leads : [],
+    tasks: Array.isArray(source.tasks) ? source.tasks : []
+  };
+}
+
+async function readCrm() {
+  await ensureCrmStorage();
+  const raw = await fs.readFile(crmFilePath, 'utf8');
+  return normalizeCrmState(JSON.parse(raw));
+}
+
+async function writeCrm(state) {
+  await ensureCrmStorage();
+  await fs.writeFile(crmFilePath, JSON.stringify(normalizeCrmState(state), null, 2), 'utf8');
+}
+
 function byDateDesc(a, b) {
   return new Date(b.date).getTime() - new Date(a.date).getTime();
 }
@@ -116,6 +152,56 @@ function normalizeNewsPayload(payload = {}) {
 
 function isNewsPayloadValid(payload) {
   return Boolean(payload.title && payload.date && payload.excerpt && payload.content);
+}
+
+function normalizeClientPayload(payload = {}) {
+  return {
+    name: String(payload.name || '').trim(),
+    company: String(payload.company || '').trim(),
+    phone: String(payload.phone || '').trim(),
+    email: String(payload.email || '').trim(),
+    status: String(payload.status || 'new').trim() || 'new',
+    source: String(payload.source || '').trim(),
+    note: String(payload.note || '').trim()
+  };
+}
+
+function normalizeLeadPayload(payload = {}) {
+  return {
+    title: String(payload.title || '').trim(),
+    clientName: String(payload.clientName || '').trim(),
+    phone: String(payload.phone || '').trim(),
+    value: Number(payload.value || 0),
+    stage: String(payload.stage || 'new').trim() || 'new',
+    owner: String(payload.owner || '').trim(),
+    nextActionDate: String(payload.nextActionDate || '').trim(),
+    note: String(payload.note || '').trim()
+  };
+}
+
+function normalizeTaskPayload(payload = {}) {
+  return {
+    title: String(payload.title || '').trim(),
+    assignee: String(payload.assignee || '').trim(),
+    dueDate: String(payload.dueDate || '').trim(),
+    priority: String(payload.priority || 'normal').trim() || 'normal',
+    status: String(payload.status || 'todo').trim() || 'todo',
+    relatedType: String(payload.relatedType || '').trim(),
+    relatedId: String(payload.relatedId || '').trim(),
+    note: String(payload.note || '').trim()
+  };
+}
+
+function isClientValid(payload) {
+  return Boolean(payload.name && payload.phone);
+}
+
+function isLeadValid(payload) {
+  return Boolean(payload.title && payload.stage);
+}
+
+function isTaskValid(payload) {
+  return Boolean(payload.title && payload.status);
 }
 
 app.use(express.json({ limit: '1mb' }));
@@ -433,6 +519,174 @@ app.delete('/api/news/:id', validateAdmin, async (req, res) => {
   }
 });
 
+app.get('/api/crm', validateAdmin, async (_req, res) => {
+  try {
+    const state = await readCrm();
+    return res.json({ ok: true, state });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'CRM ma\'lumotlarini o\'qishda xatolik', details: error.message });
+  }
+});
+
+app.post('/api/crm/clients', validateAdmin, async (req, res) => {
+  try {
+    const payload = normalizeClientPayload(req.body);
+    if (!isClientValid(payload)) {
+      return res.status(400).json({ ok: false, message: 'Mijoz uchun majburiy maydonlar to\'liq emas' });
+    }
+
+    const state = await readCrm();
+    const created = { id: crypto.randomUUID(), createdAt: new Date().toISOString(), ...payload };
+    state.clients.push(created);
+    await writeCrm(state);
+    return res.status(201).json({ ok: true, item: created });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Mijoz qo\'shishda xatolik', details: error.message });
+  }
+});
+
+app.put('/api/crm/clients/:id', validateAdmin, async (req, res) => {
+  try {
+    const payload = normalizeClientPayload(req.body);
+    if (!isClientValid(payload)) {
+      return res.status(400).json({ ok: false, message: 'Mijoz uchun majburiy maydonlar to\'liq emas' });
+    }
+
+    const state = await readCrm();
+    const index = state.clients.findIndex((item) => item.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ ok: false, message: 'Mijoz topilmadi' });
+    }
+
+    state.clients[index] = { ...state.clients[index], ...payload };
+    await writeCrm(state);
+    return res.json({ ok: true, item: state.clients[index] });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Mijozni yangilashda xatolik', details: error.message });
+  }
+});
+
+app.delete('/api/crm/clients/:id', validateAdmin, async (req, res) => {
+  try {
+    const state = await readCrm();
+    const next = state.clients.filter((item) => item.id !== req.params.id);
+    if (next.length === state.clients.length) {
+      return res.status(404).json({ ok: false, message: 'Mijoz topilmadi' });
+    }
+    state.clients = next;
+    await writeCrm(state);
+    return res.json({ ok: true });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Mijozni o\'chirishda xatolik', details: error.message });
+  }
+});
+
+app.post('/api/crm/leads', validateAdmin, async (req, res) => {
+  try {
+    const payload = normalizeLeadPayload(req.body);
+    if (!isLeadValid(payload)) {
+      return res.status(400).json({ ok: false, message: 'Lead uchun majburiy maydonlar to\'liq emas' });
+    }
+
+    const state = await readCrm();
+    const created = { id: crypto.randomUUID(), createdAt: new Date().toISOString(), ...payload };
+    state.leads.push(created);
+    await writeCrm(state);
+    return res.status(201).json({ ok: true, item: created });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Lead qo\'shishda xatolik', details: error.message });
+  }
+});
+
+app.put('/api/crm/leads/:id', validateAdmin, async (req, res) => {
+  try {
+    const payload = normalizeLeadPayload(req.body);
+    if (!isLeadValid(payload)) {
+      return res.status(400).json({ ok: false, message: 'Lead uchun majburiy maydonlar to\'liq emas' });
+    }
+
+    const state = await readCrm();
+    const index = state.leads.findIndex((item) => item.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ ok: false, message: 'Lead topilmadi' });
+    }
+
+    state.leads[index] = { ...state.leads[index], ...payload };
+    await writeCrm(state);
+    return res.json({ ok: true, item: state.leads[index] });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Leadni yangilashda xatolik', details: error.message });
+  }
+});
+
+app.delete('/api/crm/leads/:id', validateAdmin, async (req, res) => {
+  try {
+    const state = await readCrm();
+    const next = state.leads.filter((item) => item.id !== req.params.id);
+    if (next.length === state.leads.length) {
+      return res.status(404).json({ ok: false, message: 'Lead topilmadi' });
+    }
+    state.leads = next;
+    await writeCrm(state);
+    return res.json({ ok: true });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Leadni o\'chirishda xatolik', details: error.message });
+  }
+});
+
+app.post('/api/crm/tasks', validateAdmin, async (req, res) => {
+  try {
+    const payload = normalizeTaskPayload(req.body);
+    if (!isTaskValid(payload)) {
+      return res.status(400).json({ ok: false, message: 'Vazifa uchun majburiy maydonlar to\'liq emas' });
+    }
+
+    const state = await readCrm();
+    const created = { id: crypto.randomUUID(), createdAt: new Date().toISOString(), ...payload };
+    state.tasks.push(created);
+    await writeCrm(state);
+    return res.status(201).json({ ok: true, item: created });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Vazifa qo\'shishda xatolik', details: error.message });
+  }
+});
+
+app.put('/api/crm/tasks/:id', validateAdmin, async (req, res) => {
+  try {
+    const payload = normalizeTaskPayload(req.body);
+    if (!isTaskValid(payload)) {
+      return res.status(400).json({ ok: false, message: 'Vazifa uchun majburiy maydonlar to\'liq emas' });
+    }
+
+    const state = await readCrm();
+    const index = state.tasks.findIndex((item) => item.id === req.params.id);
+    if (index === -1) {
+      return res.status(404).json({ ok: false, message: 'Vazifa topilmadi' });
+    }
+
+    state.tasks[index] = { ...state.tasks[index], ...payload };
+    await writeCrm(state);
+    return res.json({ ok: true, item: state.tasks[index] });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Vazifani yangilashda xatolik', details: error.message });
+  }
+});
+
+app.delete('/api/crm/tasks/:id', validateAdmin, async (req, res) => {
+  try {
+    const state = await readCrm();
+    const next = state.tasks.filter((item) => item.id !== req.params.id);
+    if (next.length === state.tasks.length) {
+      return res.status(404).json({ ok: false, message: 'Vazifa topilmadi' });
+    }
+    state.tasks = next;
+    await writeCrm(state);
+    return res.json({ ok: true });
+  } catch (error) {
+    return res.status(500).json({ ok: false, message: 'Vazifani o\'chirishda xatolik', details: error.message });
+  }
+});
+
 app.get('*', (_req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -440,6 +694,9 @@ app.get('*', (_req, res) => {
 ensureNewsStorage()
   .then(() => {
     return ensureMessageLogsStorage();
+  })
+  .then(() => {
+    return ensureCrmStorage();
   })
   .then(() => {
     startTelegramCommandPolling();
